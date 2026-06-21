@@ -343,6 +343,21 @@
    }
    
    /* ---- Profile page ---- */
+   .profile-layout {
+     display: flex;
+     flex-direction: row;
+     gap: 64px;
+     align-items: start;
+   }
+   .profile-photo {
+     flex: 0 0 260px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   .profile-content {
+     flex: 1;
+   }
    .profile-photo .face-frame { width: 260px; height: 320px; }
    .profile-photo .face-caption .face-name {
      display: block;
@@ -431,13 +446,23 @@
    
    /* ---- Responsive ---- */
    @media (max-width: 900px) {
-     .about-strip-inner, .profile-layout { grid-template-columns: 1fr; text-align: center; }
+     .about-strip-inner { grid-template-columns: 1fr; text-align: center; }
      .face-frame { margin: 0 auto; }
-     .profile-content h2 { justify-content: center; }
      .achieve-grid, .card-grid { grid-template-columns: 1fr; }
      .career-list li { grid-template-columns: 1fr; gap: 4px; }
      .service-item { grid-template-columns: 1fr; }
      .service-num { font-size: 1.6rem; }
+     /* プロフィール：縦積みに切り替え */
+     .profile-layout {
+       flex-direction: column;
+     }
+     .profile-photo {
+       flex: unset;
+       width: 100%;
+     }
+     .face-caption { text-align: center; }
+     .profile-content { text-align: left; }
+     .profile-content h2 { justify-content: flex-start; }
    }
    @media (max-width: 768px) {
      .nav-toggle { display: flex; }
@@ -493,6 +518,8 @@
    .section-header { margin-bottom: 48px; }
    .section-header-lg { text-align: center; margin-bottom: 56px; }
    .section-header-md { text-align: center; margin-bottom: 40px; }
+   .achieve-header { text-align: left; }
+   .achieve-header .section-divider { margin: 0 0 0; }
    .section-divider-center { margin: 0 auto 0; }
    .section-actions { text-align: center; margin-top: 48px; }
    .section-actions-sm { margin-top: 32px; }
@@ -504,6 +531,14 @@
 
    /* ---- Index ---- */
    .about-strip-inner--single { grid-template-columns: 1fr; }
+   .achieve-title-break { white-space: nowrap; }
+   @media (max-width: 900px) {
+     .about-strip-inner--single { text-align: left; }
+     .about-strip-inner--single .message-signature { text-align: right; }
+     .achieve-title-break { display: block; }
+     .achieve-header { text-align: left; }
+     .achieve-header .section-divider { margin: 0 0 0; }
+   }
    .message-signature {
      text-align: right;
      font-size: 0.88rem;
@@ -515,13 +550,6 @@
    .achieve-header .section-title { color: var(--color-white); }
 
    /* ---- Profile ---- */
-   .profile-layout {
-     display: grid;
-     grid-template-columns: 260px 1fr;
-     gap: 64px;
-     align-items: start;
-   }
-
    /* ---- Service ---- */
    .service-intro { margin-bottom: 56px; }
    .service-lead { color: var(--color-text-muted); max-width: 640px; }
@@ -655,6 +683,24 @@
    .company-table--compact { font-size: 0.86rem; }
    .company-table--compact th { width: 100px; }
    .company-table td.email { font-size: 0.82rem; word-break: break-all; }
+   @media (max-width: 600px) {
+     .company-table,
+     .company-table tbody,
+     .company-table tr,
+     .company-table th,
+     .company-table td { display: block; width: 100%; }
+     .company-table tr { border-bottom: 1px solid var(--color-border); padding: 12px 0; }
+     .company-table th,
+     .company-table td { border-bottom: none; padding: 2px 16px; }
+     .company-table th {
+       font-size: 0.75rem;
+       color: var(--color-accent);
+       background: none;
+       padding-bottom: 2px;
+     }
+     .company-table td { padding-top: 2px; }
+     .company-table--compact th { width: 100%; }
+   }
 
    .related-section {
      background: var(--color-primary);
